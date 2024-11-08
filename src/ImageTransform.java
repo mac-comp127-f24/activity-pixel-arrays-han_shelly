@@ -7,21 +7,30 @@ public class ImageTransform {
 
     public static Image lighten(Image srcImage) {
         // TODO: Task 1
-
-        throw new UnsupportedOperationException("Method not yet defined");
+        float[] pixels = srcImage.toFloatArray(Image.PixelFormat.RGB);
+        for (int i = 0; i < pixels.length; i++) {
+            pixels[i] =pixels[i] * (float) 1.5;
+        }
+        return new Image((int)srcImage.getWidth(), (int)srcImage.getHeight(), pixels, Image.PixelFormat.RGB);
     }
 
 
     public static Image greenShift(Image srcImage) {
         // TODO: Task 2
-
-        throw new UnsupportedOperationException("Method not yet defined");
+        float[] pixels = srcImage.toFloatArray(Image.PixelFormat.RGB);
+        for (int i = 2; i < pixels.length; i+=3) {
+            pixels[i] =pixels[i] * (float) 0.25;
+        }
+        return new Image((int)srcImage.getWidth(), (int)srcImage.getHeight(), pixels, Image.PixelFormat.RGB);
     }
 
     public static Image invert(Image srcImage) {
         // TODO: Task 3
-
-        throw new UnsupportedOperationException("Method not yet defined");
+        byte[] pixels = srcImage.toByteArray(Image.PixelFormat.RGB);
+        for (int i = 0; i < pixels.length; i++) {
+            pixels[i] = (byte) (255 - pixels[i]);
+        }
+        return new Image((int)srcImage.getWidth(), (int)srcImage.getHeight(), pixels, Image.PixelFormat.RGB);
     }
 
     public static void main(String[] args) {
